@@ -9,7 +9,7 @@
     <style>
         html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; }
         #app-frame { position: relative; width: 100%; max-width: 450px; height: 100%; max-height: 900px; margin: auto; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; background-color: white; }
-        #splash-screen { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-image: url('images/splash.png'); background-color: #ffffff; background-size: cover; background-position: center; background-repeat: no-repeat; cursor: pointer; position: absolute; top: 0; left: 0; z-index: 100; transition: opacity 0.5s ease-in-out; }
+        #splash-screen { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-image: url('images/splash.png'); background-size: cover; background-position: center; cursor: pointer; position: absolute; top: 0; left: 0; z-index: 100; transition: opacity 0.5s ease-in-out; }
         #app-container { display: none; flex-direction: column; height: 100%; width: 100%; }
         .mode-selector { padding: 15px; text-align: center; background-color: #fafafa; border-bottom: 1px solid #eee; }
         .mode-button { padding: 10px 20px; font-size: 1em; font-weight: 600; margin: 0 5px; cursor: pointer; background: #eee; border: none; color: #555; border-radius: 10px; }
@@ -55,41 +55,16 @@
     </div>
 
     <script>
-        document.getElementById('splash-screen').addEventListener('click', function() {
+        document.getElementById('splash-screen').addEventListener('click', () => {
             const splash = document.getElementById('splash-screen');
             const app = document.getElementById('app-container');
 
             splash.style.opacity = '0';
-            setTimeout(function() {
-                splash.style.display = 'none';
-                app.style.display = 'flex';
-            }, 500);
+            setTimeout(() => { splash.style.display = 'none'; }, 500);
+            app.style.display = 'flex';
 
             const words = [
-                { id: 1, text: '사과', image: 'images/apple.png', category: '마찰음' },
-                { id: 2, text: '바나나', image: 'images/banana.png', category: '유음/비음' },
-                { id: 3, text: '딸기', image: 'images/strawberry.png', category: '된소리' },
-                { id: 4, text: '포도', image: 'images/grape.png', category: '거센소리' },
-                { id: 5, text: '수박', image: 'images/watermelon.png', category: '마찰음' },
-                { id: 6, text: '귤', image: 'images/tangerine.png', category: '기본/복합' },
-                { id: 7, text: '배', image: 'images/pear.png', category: '기본/복합' },
-                { id: 8, text: '복숭아', image: 'images/peach.png', category: '마찰음' },
-                { id: 9, text: '오렌지', image: 'images/orange.png', category: '유음/비음' },
-                { id: 10, text: '키위', image: 'images/kiwi.png', category: '이중모음' },
-                { id: 11, text: '참외', image: 'images/melon.png', category: '이중모음' },
-                { id: 12, text: '파인애플', image: 'images/pineapple.png', category: '거센소리' },
-                { id: 13, text: '강아지', image: 'images/dog.png', category: '기본/복합' },
-                { id: 14, text: '고양이', image: 'images/cat.png', category: '기본/복합' },
-                { id: 15, text: '호랑이', image: 'images/tiger.png', category: '마찰음' },
-                { id: 16, text: '사자', image: 'images/lion.png', category: '마찰음' },
-                { id: 17, text: '코끼리', image: 'images/elephant.png', category: '거센소리' },
-                { id: 18, text: '기린', image: 'images/giraffe.png', category: '유음/비음' },
-                { id: 19, text: '토끼', image: 'images/rabbit.png', category: '된소리' },
-                { id: 20, text: '원숭이', image: 'images/monkey.png', category: '이중모음' },
-                { id: 21, text: '곰', image: 'images/bear.png', category: '기본/복합' },
-                { id: 22, text: '돼지', image: 'images/pig.png', category: '이중모음' },
-                { id: 23, text: '닭', image: 'images/chicken.png', category: '기본/복합' },
-                { id: 24, text: '병아리', image: 'images/chick.png', category: '된소리' }
+                { id: 1, text: '사과', image: 'images/apple.png', category: '마찰음' }, { id: 2, text: '바나나', image: 'images/banana.png', category: '유음/비음' }, { id: 3, text: '딸기', image: 'images/strawberry.png', category: '된소리' }, { id: 4, text: '포도', image: 'images/grape.png', category: '거센소리' }, { id: 5, text: '수박', image: 'images/watermelon.png', category: '마찰음' }, { id: 6, text: '귤', image: 'images/tangerine.png', category: '기본/복합' }, { id: 7, text: '배', image: 'images/pear.png', category: '기본/복합' }, { id: 8, text: '복숭아', image: 'images/peach.png', category: '마찰음' }, { id: 9, text: '오렌지', image: 'images/orange.png', category: '유음/비음' }, { id: 10, text: '키위', image: 'images/kiwi.png', category: '이중모음' }, { id: 11, text: '참외', image: 'images/melon.png', category: '이중모음' }, { id: 12, text: '파인애플', image: 'images/pineapple.png', category: '거센소리' }, { id: 13, text: '강아지', image: 'images/dog.png', category: '기본/복합' }, { id: 14, text: '고양이', image: 'images/cat.png', category: '기본/복합' }, { id: 15, text: '호랑이', image: 'images/tiger.png', category: '마찰음' }, { id: 16, text: '사자', image: 'images/lion.png', category: '마찰음' }, { id: 17, text: '코끼리', image: 'images/elephant.png', category: '거센소리' }, { id: 18, text: '기린', image: 'images/giraffe.png', category: '유음/비음' }, { id: 19, text: '토끼', image: 'images/rabbit.png', category: '된소리' }, { id: 20, text: '원숭이', image: 'images/monkey.png', category: '이중모음' }, { id: 21, text: '곰', image: 'images/bear.png', category: '기본/복합' }, { id: 22, text: '돼지', image: 'images/pig.png', category: '이중모음' }, { id: 23, text: '닭', image: 'images/chicken.png', category: '기본/복합' }, { id: 24, text: '병아리', image: 'images/chick.png', category: '된소리' }
             ];
 
             const swiperContainer = document.getElementById('swiper-container');
@@ -99,10 +74,10 @@
             let currentMode = 'all';
 
             function createSlide(word) {
-                return '<div class="swiper-slide" style="background-image: url(\'' + word.image + '\');" data-id="' + word.id + '" data-text="' + word.text + '"><div class="clickable-area sound-area"></div><div class="clickable-area ok-area"></div><div class="clickable-area review-area"></div><div class="clickable-area next-area"></div></div>';
+                return `<div class="swiper-slide" style="background-image: url('${word.image}');" data-id="${word.id}" data-text="${word.text}"><div class="clickable-area sound-area"></div><div class="clickable-area ok-area"></div><div class="clickable-area review-area"></div><div class="clickable-area next-area"></div></div>`;
             }
 
-            function initializeSwiper(wordList, isLoop) {
+            function initializeSwiper(wordList, isLoop = false) {
                 swiperWrapper.innerHTML = '';
                 if (wordList.length === 0) {
                     swiperWrapper.innerHTML = '<div class="swiper-slide" style="background-image: none; font-size:1.5em; display:flex; justify-content:center; align-items:center;">복습할 단어가 없어요!</div>';
@@ -110,47 +85,39 @@
                     return;
                 }
                 
-                for (var i = 0; i < wordList.length; i++) {
-                    swiperWrapper.innerHTML += createSlide(wordList[i]);
-                }
+                wordList.forEach(word => { swiperWrapper.innerHTML += createSlide(word); });
                 if (swiper) swiper.destroy(true, true);
                 swiper = new Swiper(swiperContainer, { loop: isLoop });
                 
                 if (currentMode === 'all' && !isLoop) {
-                    swiper.on('reachEnd', function() {
-                        setTimeout(function() {
-                            if (swiper.isEnd) document.getElementById('show-results-btn').style.display = 'block';
+                    swiper.on('reachEnd', function () {
+                        setTimeout(() => {
+                           if(swiper.isEnd) document.getElementById('show-results-btn').style.display = 'block';
                         }, 300);
                     });
                 }
             }
             
             swiperContainer.addEventListener('click', function(event) {
-                var activeSlide = swiper.slides[swiper.activeIndex];
+                const activeSlide = swiper.slides[swiper.activeIndex];
                 if (!activeSlide) return;
-                var wordId = parseInt(activeSlide.dataset.id);
+                const wordId = parseInt(activeSlide.dataset.id);
 
-                if (event.target.matches('.sound-area')) {
-                    speak(activeSlide.dataset.text);
-                }
+                if (event.target.matches('.sound-area')) { speak(activeSlide.dataset.text); }
                 if (event.target.matches('.ok-area')) {
-                    reviewList = reviewList.filter(function(id) { return id !== wordId; });
+                    reviewList = reviewList.filter(id => id !== wordId);
                     localStorage.setItem('malggotReviewList', JSON.stringify(reviewList));
                     swiper.slideNext();
                 }
                 if (event.target.matches('.review-area')) {
-                    if (reviewList.indexOf(wordId) === -1) {
-                        reviewList.push(wordId);
-                    }
+                    if (!reviewList.includes(wordId)) { reviewList.push(wordId); }
                     localStorage.setItem('malggotReviewList', JSON.stringify(reviewList));
                     swiper.slideNext();
                 }
-                if (event.target.matches('.next-area')) {
-                    swiper.slideNext();
-                }
+                if (event.target.matches('.next-area')) { swiper.slideNext(); }
             });
 
-            document.getElementById('all-mode-btn').addEventListener('click', function() {
+            document.getElementById('all-mode-btn').addEventListener('click', () => {
                 currentMode = 'all';
                 document.getElementById('all-mode-btn').classList.add('active');
                 document.getElementById('review-mode-btn').classList.remove('active');
@@ -160,17 +127,14 @@
                 initializeSwiper(words, false);
             });
 
-            document.getElementById('review-mode-btn').addEventListener('click', function() {
+            document.getElementById('review-mode-btn').addEventListener('click', () => {
                 currentMode = 'review';
                 document.getElementById('review-mode-btn').classList.add('active');
                 document.getElementById('all-mode-btn').classList.remove('active');
                 document.getElementById('swiper-container').classList.add('active');
                 document.getElementById('results-page').classList.remove('active');
                 document.getElementById('show-results-btn').style.display = 'none';
-                var reviewWords = words.filter(function(word) {
-                    return reviewList.indexOf(word.id) !== -1;
-                });
-                reviewWords.sort(function() { return Math.random() - 0.5; });
+                const reviewWords = words.filter(word => reviewList.includes(word.id)).sort(() => Math.random() - 0.5);
                 initializeSwiper(reviewWords, true);
             });
 
@@ -179,42 +143,29 @@
             function showResults() {
                 document.getElementById('swiper-container').classList.remove('active');
                 document.getElementById('show-results-btn').style.display = 'none';
-                var resultsPage = document.getElementById('results-page');
+                const resultsPage = document.getElementById('results-page');
                 resultsPage.classList.add('active');
 
-                var totalCount = words.length;
-                var perfectCount = totalCount - reviewList.length;
-                document.getElementById('result-summary-text').textContent = '총 ' + totalCount + '개 중 ' + perfectCount + '개를 완벽하게 발음했어요!';
-                var percentage = totalCount > 0 ? (perfectCount / totalCount) * 100 : 0;
+                const totalCount = words.length;
+                const perfectCount = totalCount - reviewList.length;
+                document.getElementById('result-summary-text').textContent = `총 ${totalCount}개 중 ${perfectCount}개를 완벽하게 발음했어요!`;
+                const percentage = totalCount > 0 ? (perfectCount / totalCount) * 100 : 0;
                 document.getElementById('progress-bar').style.width = percentage + '%';
 
-                var coachingText = '<h4>⭐ 말꽃이네 코칭 ⭐</h4>';
-                var reviewWords = words.filter(function(word) {
-                    return reviewList.indexOf(word.id) !== -1;
-                });
+                let coachingText = "<h4>⭐ 말꽃이네 코칭 ⭐</h4>";
+                const reviewWords = words.filter(word => reviewList.includes(word.id));
                 if (reviewWords.length === 0) {
-                    coachingText += '<p>모든 단어를 완벽하게 알고 있네요! 정말 대단해요! 👍</p>';
+                    coachingText += "<p>모든 단어를 완벽하게 알고 있네요! 정말 대단해요! 👍</p>";
                 } else {
-                    var categoryCounts = {};
-                    for (var i = 0; i < reviewWords.length; i++) {
-                        var cat = reviewWords[i].category;
-                        categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
-                    }
-                    var mostChallenging = Object.keys(categoryCounts)[0];
-                    for (var key in categoryCounts) {
-                        if (categoryCounts[key] > categoryCounts[mostChallenging]) {
-                            mostChallenging = key;
-                        }
-                    }
-                    coachingText += '<p>우리 아이는 <strong>\'' + mostChallenging + '\'</strong> 발음을 조금 어려워하는 것 같아요!</p>';
-                    if (mostChallenging === '된소리') {
-                        coachingText += '<p>괜찮아요! \'된소리(ㄲ,ㄸ,ㅃ,ㅆ,ㅉ)\'는 많은 아이들이 어려워해요. \'개미 목소리\'처럼 작고 속삭이듯 발음하는 연습이 도움이 될 수 있답니다.</p>';
-                    } else if (mostChallenging === '거센소리') {
-                        coachingText += '<p>손바닥에 바람을 \'후!\' 불어보는 것처럼, \'거센소리(ㅋ,ㅌ,ㅍ,ㅊ)\'는 바람이 나오는 소리라는 걸 알려주면 재미있게 배울 수 있어요.</p>';
-                    } else if (mostChallenging === '마찰음') {
-                        coachingText += '<p>\'마찰음(ㅅ,ㅆ,ㅎ)\'은 뱀이 지나가는 소리(스으~)나 바람 소리(후우~)를 흉내 내며 놀이처럼 접근하면 효과적이랍니다.</p>';
-                    } else {
-                        coachingText += '<p>다양한 단어들을 꾸준히 반복해서 들려주고 따라 말해보는 것만으로도 큰 도움이 될 거예요!</p>';
+                    const categoryCounts = {};
+                    reviewWords.forEach(word => { categoryCounts[word.category] = (categoryCounts[word.category] || 0) + 1; });
+                    const mostChallenging = Object.keys(categoryCounts).reduce((a, b) => categoryCounts[a] > categoryCounts[b] ? a : b);
+                    coachingText += `<p>우리 아이는 <strong>'${mostChallenging}'</strong> 발음을 조금 어려워하는 것 같아요!</p>`;
+                    switch (mostChallenging) {
+                        case '된소리': coachingText += "<p>괜찮아요! '된소리(ㄲ,ㄸ,ㅃ,ㅆ,ㅉ)'는 많은 아이들이 어려워해요. '개미 목소리'처럼 작고 속삭이듯 발음하는 연습이 도움이 될 수 있답니다.</p>"; break;
+                        case '거센소리': coachingText += "<p>손바닥에 바람을 '후!' 불어보는 것처럼, '거센소리(ㅋ,ㅌ,ㅍ,ㅊ)'는 바람이 나오는 소리라는 걸 알려주면 재미있게 배울 수 있어요.</p>"; break;
+                        case '마찰음': coachingText += "<p>'마찰음(ㅅ,ㅆ,ㅎ)'은 뱀이 지나가는 소리(스으~)나 바람 소리(후우~)를 흉내 내며 놀이처럼 접근하면 효과적이랍니다.</p>"; break;
+                        default: coachingText += "<p>다양한 단어들을 꾸준히 반복해서 들려주고 따라 말해보는 것만으로도 큰 도움이 될 거예요!</p>";
                     }
                 }
                 document.getElementById('result-coaching-text').innerHTML = coachingText;
@@ -222,7 +173,7 @@
 
             function speak(text) {
                 speechSynthesis.cancel();
-                var utterance = new SpeechSynthesisUtterance(text);
+                const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'ko-KR';
                 utterance.rate = 0.8;
                 speechSynthesis.speak(utterance);
