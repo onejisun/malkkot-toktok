@@ -9,8 +9,8 @@
     <style>
         html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; }
         #app-frame { position: relative; width: 100%; max-width: 450px; height: 100%; max-height: 900px; margin: auto; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; background-color: white; }
-        #splash-screen { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-image: url('images/splash.png'); background-color: #ffffff; background-size: cover; background-position: center; background-repeat: no-repeat; cursor: pointer; position: absolute; top: 0; left: 0; z-index: 100; transition: opacity 0.5s ease-in-out; }
-        #app-container { display: none; flex-direction: column; height: 100%; width: 100%; }
+        #splash-screen { display: flex !important; visibility: visible !important; opacity: 1 !important; justify-content: center; align-items: center; width: 100%; height: 100%; background-image: url('images/splash.png'); background-color: #ffffff; background-size: cover; background-position: center; background-repeat: no-repeat; cursor: pointer; position: absolute; top: 0; left: 0; z-index: 100; transition: opacity 0.5s ease-in-out; }
+        #app-container { display: none !important; flex-direction: column; height: 100%; width: 100%; }
         .mode-selector { padding: 15px; text-align: center; background-color: #fafafa; border-bottom: 1px solid #eee; }
         .mode-button { padding: 10px 20px; font-size: 1em; font-weight: 600; margin: 0 5px; cursor: pointer; background: #eee; border: none; color: #555; border-radius: 10px; }
         .mode-button.active { background: #FF6B6B; color: white; }
@@ -269,24 +269,45 @@
                 initializeSwiper(words, false);
             }
 
-            document.addEventListener('DOMContentLoaded', function() {
+            function initSplash() {
                 const splashScreen = document.getElementById('splash-screen');
                 const appContainer = document.getElementById('app-container');
 
-                if (!splashScreen || !appContainer) {
-                    console.error('필수 요소를 찾을 수 없습니다.');
+                if (!splashScreen) {
+                    console.error('splash-screen 요소를 찾을 수 없습니다.');
                     return;
                 }
+                
+                if (!appContainer) {
+                    console.error('app-container 요소를 찾을 수 없습니다.');
+                    return;
+                }
+
+                // 스플래시 스크린이 보이도록 확인
+                splashScreen.style.setProperty('display', 'flex', 'important');
+                splashScreen.style.setProperty('opacity', '1', 'important');
+                splashScreen.style.setProperty('visibility', 'visible', 'important');
+                
+                // 앱 컨테이너는 확실히 숨김
+                appContainer.style.setProperty('display', 'none', 'important');
+                
+                console.log('스플래시 스크린 초기화 완료');
 
                 splashScreen.addEventListener('click', function() {
                     splashScreen.style.opacity = '0';
                     setTimeout(function() {
-                        splashScreen.style.display = 'none';
-                        appContainer.style.display = 'flex';
+                        splashScreen.style.setProperty('display', 'none', 'important');
+                        appContainer.style.setProperty('display', 'flex', 'important');
                         initApp();
                     }, 500);
                 });
-            });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initSplash);
+            } else {
+                initSplash();
+            }
         })();
     </script>
 </body>
